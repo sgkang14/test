@@ -1,0 +1,15 @@
+--- # local
+spring:
+  profiles: local
+server:
+  port: 8080
+--- # dev
+spring:
+  profiles: dev
+server:
+  port: 8090
+--- # prod
+spring:
+  profiles: prod
+server:
+  port: 80
