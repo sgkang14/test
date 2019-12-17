@@ -1,19 +1,19 @@
 package com.ksg.openapi.exception;
 
-import com.ksg.openapi.common.ErrorCode;
+import com.ksg.openapi.sample.errorResponse.ErrorCode;
+import lombok.Getter;
 
 /**
  * Created by 강성근
  */
+@Getter
 public class CustomErrorException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    ErrorCode errorCode;
+    private ErrorCode errorCode;
 
-    public CustomErrorException() {
-        super();
-    }
+    private CustomErrorException() {}
 
     public CustomErrorException(ErrorCode errorCode) {
         super();
