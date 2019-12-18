@@ -1,7 +1,12 @@
 package com.ksg.openapi.sample.errorResponse;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
@@ -10,10 +15,15 @@ import java.util.List;
  * Created by 강성근
  */
 @Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResultVO {
 
     private Integer no;
+
+    private String name;
 
     private Date dt;
 
