@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Getter
 @AllArgsConstructor
-public enum EnumType {
+public enum SexType {
 
-    AAA("100", "AAA"),
-    BBB("200", "BBB"),
-    CCC("300", "CCC");
+    MAN("100", "MAN"),
+    WOMAN("200", "WOMAN");
 
     private String code;
 

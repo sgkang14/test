@@ -1,7 +1,6 @@
 package com.ksg.openapi.sample.errorResponse;
 
 import ch.qos.logback.classic.Logger;
-import com.ksg.openapi.backup.service.HealthCheckService;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
@@ -16,36 +15,37 @@ public class SampleService {
 
     private static Logger logger = (Logger) LoggerFactory.getLogger(SampleRequestDTO.class);
 
-    public SampleResponseDTO query(SampleRequestDTO request) {
+    public SampleResponseData query(SampleRequestDTO request) {
 
         logger.debug("### Service ### [{}]", request.toString());
 
-        List<ResultVO> listResultVO = new ArrayList<ResultVO>();
-
+        List<ResultVO> listResult = new ArrayList<ResultVO>();
         ResultVO result = new ResultVO();
-        result.setNo(0);
-        result.setName("aaa");
-        listResultVO.add(result);
-        result.setNo(1);
-        result.setName("bbb");
-        listResultVO.add(result);
-        result.setNo(2);
-        result.setName("ccc");
-        listResultVO.add(result);
+        listResult.add(result);
+        listResult.add(result);
+        listResult.add(result);
 
-        ListData<ResultVO> listData = new ListData<ResultVO>();
+        SampleResponseData data = new SampleResponseData();
+        data.setUsers(listResult);
 
-        listData.setData(listResultVO);
+        data.getPage().setLimit(20);
+        data.getPage().setOffset(3);
 
-        Paging paging = new Paging();
-        paging.setOffset("1");
-        paging.setLimit("2");
+        return data;
+    }
 
-        listData.setPaging(paging);
+    public SampleResponseData byPass(SampleRequestDTO request) {
 
-        SampleResponseDTO<ListData> response = new SampleResponseDTO<ListData>();
-        response.setData(listData);
+        logger.debug("### Service ### [{}]", request.toString());
 
-        return response;
+        ResultVO result = new ResultVO(request);
+
+        SampleResponseData data = new SampleResponseData();
+        data.getUsers().add(result);
+
+        data.getPage().setLimit(20);
+        data.getPage().setOffset(1);
+
+        return data;
     }
 }

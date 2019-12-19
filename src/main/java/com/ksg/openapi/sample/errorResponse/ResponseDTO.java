@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SampleResponseDTO<T> {
+public class ResponseDTO<T> {
 
     static final String STATUS_OK = "OK";
     static final String STATUS_FAIL = "Fail";
@@ -24,12 +24,12 @@ public class SampleResponseDTO<T> {
 
     private T data;
 
-    public SampleResponseDTO(ErrorCode errorCode) {
+    public ResponseDTO(ErrorCode errorCode) {
         this.status = STATUS_FAIL;
         this.error = new Error(errorCode);
     }
 
-    public SampleResponseDTO(T data) {
+    public ResponseDTO(T data) {
         this.status = STATUS_OK;
         this.data = data;
     }

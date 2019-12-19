@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.List;
 
@@ -13,17 +15,25 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@Valid
 public class SampleRequestDTO {
 
-    private Integer no;
+    private Integer num;
 
-    private Date dt;
+    @Pattern(regexp = "seoul|pusan")
+    private String city;
 
-    private EnumType en;
+    private Date birth;
 
-    private List<EnumType> ens;
+    private SexType sex;
 
-    private ClassType cl;
+    private List<HobbyType> hobbys;
 
-    private List<ClassType> cls;
+    private List<Family> Familys;
+
+    @Pattern(regexp = "name|sex|hobby")
+    private String sort;
+
+    @Pattern(regexp = "desc|asc")
+    private String order;
 }
