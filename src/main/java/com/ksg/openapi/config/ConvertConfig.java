@@ -1,8 +1,7 @@
 package com.ksg.openapi.config;
 
-import com.ksg.openapi.backup.common.HobbyTypeConverter;
-import com.ksg.openapi.sample.errorResponse.HobbyTypeListConverter;
-import com.ksg.openapi.sample.errorResponse.SexTypeConverter;
+import com.ksg.openapi.sample.errorResponse.HobbyType;
+import com.ksg.openapi.sample.errorResponse.SexType;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -14,7 +13,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class ConvertConfig implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(new HobbyTypeListConverter());
-        registry.addConverter(new SexTypeConverter());
+        registry.addConverter(new HobbyType.StringToEnum());
+        registry.addConverter(new HobbyType.StringToListEnum());
+        registry.addConverter(new SexType.StringToEnum());
     }
 }

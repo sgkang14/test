@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ public class SampleResponseData {
     private Paging page;
 
     public SampleResponseData() {
+        this.users = new ArrayList<ResultVO>();
         this.page = new Paging();
     }
 }

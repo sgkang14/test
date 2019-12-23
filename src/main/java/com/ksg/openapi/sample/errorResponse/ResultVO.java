@@ -21,7 +21,7 @@ public class ResultVO {
 
     private Integer num;
 
-    private String city;
+    private List<String> citys;
 
     private Date birth;
 
@@ -29,28 +29,31 @@ public class ResultVO {
 
     private List<HobbyType> hobbys;
 
-    private List<Family> Familys;
+ //   private List<Family> Familys;
 
     public ResultVO(SampleRequestDTO request) {
         this.num = request.getNum();
-        this.city = request.getCity();
+        this.citys = request.getCitys();
         this.birth = request.getBirth();
         this.sex = request.getSex();
         this.hobbys = request.getHobbys();
-        this.Familys = request.getFamilys();
+ //       this.Familys = request.getFamilys();
     }
 
     public ResultVO() {
         this.num = 1;
-        this.city = "seoul";
+        this.citys = new ArrayList<String>();
+        citys.add("seoul");
+        citys.add("pusan");
+
         //this.birth = '2019';
         this.sex = SexType.WOMAN;
-        this.hobbys = new ArrayList<HobbyType>();
+ /*       this.hobbys = new ArrayList<HobbyType>();
         this.hobbys.add(HobbyType.GAME);
         this.hobbys.add(HobbyType.NOVEL);
         this.Familys = new ArrayList<Family>();
         this.Familys.add(new Family("aaa", 20));
-        this.Familys.add(new Family("bbb", 30));
+        this.Familys.add(new Family("bbb", 30));*/
     }
 
 }

@@ -20,16 +20,15 @@ public class SampleRequestDTO {
 
     private Integer num;
 
-    @Pattern(regexp = "seoul|pusan")
-    private String city;
+    private List<@Pattern(regexp = "seoul|pusan|masan") String> citys;
 
     private Date birth;
 
     private SexType sex;
 
-    private List<HobbyType> hobbys;
+   private List<HobbyType> hobbys;
 
-    private List<Family> Familys;
+ //   private List<Family> Familys;
 
     @Pattern(regexp = "name|sex|hobby")
     private String sort;

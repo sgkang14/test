@@ -3,6 +3,7 @@ package com.ksg.openapi.sample.errorResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Getter
 @AllArgsConstructor
-public enum SexType {
+public enum SexType implements EnumCode {
 
     MAN("100", "MAN"),
     WOMAN("200", "WOMAN");
@@ -19,5 +20,12 @@ public enum SexType {
     private String code;
 
     private String name;
+
+    public static class StringToEnum implements Converter<String, SexType> {
+        @Override
+        public SexType convert(String source) {
+            return SexType.valueOf(source.toUpperCase());
+        }
+    }
 }
 

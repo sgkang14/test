@@ -5,10 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -24,18 +21,19 @@ public class SampleController {
     SampleService sampleService;
 
     @RequestMapping(value = "errorResponseGet", method = RequestMethod.GET)
-    public ResponseEntity<ResponseDTO> errorResponseGet(@ModelAttribute @Valid SampleRequestDTO request) throws Exception {
+    public ResponseEntity<ResponseDTO> errorResponseGet(@Valid SampleRequestDTO request) throws Exception {
 
         logger.debug("### Controller ### [{}]", request.toString());
 
-        return new ResponseEntity<ResponseDTO>(new ResponseDTO<SampleResponseData>(sampleService.query(request)), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDTO<SampleResponseData>(sampleService.byPass(request)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "errorResponsePost", method = RequestMethod.POST)
-    public ResponseEntity<ResponseDTO> errorResponsePost(@ModelAttribute @Valid SampleRequestDTO request) throws Exception {
+    @ResponseBody
+    public ResponseEntity<ResponseDTO> errorResponsePost(@Valid @RequestBody SampleRequestDTO request) throws Exception {
 
         logger.debug("### Controller ### [{}]", request.toString());
 
-        return new ResponseEntity<ResponseDTO>(new ResponseDTO<SampleResponseData>(sampleService.byPass(request)), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDTO<SampleResponseData>(sampleService.byPass(request)), HttpStatus.OK);
     }
 }
