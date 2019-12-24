@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.ibatis.type.Alias;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,43 +18,17 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Alias("ResultVO")
 public class ResultVO {
 
-    private Integer num;
+    private Integer no;
 
-    private List<String> citys;
+    private String sex;
 
-    private Date birth;
+    private String name;
 
-    private SexType sex;
+    private Date regDt;
 
-    private List<HobbyType> hobbys;
-
- //   private List<Family> Familys;
-
-    public ResultVO(SampleRequestDTO request) {
-        this.num = request.getNum();
-        this.citys = request.getCitys();
-        this.birth = request.getBirth();
-        this.sex = request.getSex();
-        this.hobbys = request.getHobbys();
- //       this.Familys = request.getFamilys();
-    }
-
-    public ResultVO() {
-        this.num = 1;
-        this.citys = new ArrayList<String>();
-        citys.add("seoul");
-        citys.add("pusan");
-
-        //this.birth = '2019';
-        this.sex = SexType.WOMAN;
- /*       this.hobbys = new ArrayList<HobbyType>();
-        this.hobbys.add(HobbyType.GAME);
-        this.hobbys.add(HobbyType.NOVEL);
-        this.Familys = new ArrayList<Family>();
-        this.Familys.add(new Family("aaa", 20));
-        this.Familys.add(new Family("bbb", 30));*/
-    }
+    private String hobby;
 
 }

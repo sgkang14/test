@@ -1,7 +1,9 @@
 package com.ksg.openapi.sample.errorResponse;
 
 import ch.qos.logback.classic.Logger;
+import com.ksg.openapi.mapper.UserMapper;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,36 +17,18 @@ public class SampleService {
 
     private static Logger logger = (Logger) LoggerFactory.getLogger(SampleRequestDTO.class);
 
+    @Autowired
+    UserMapper userMapper;
+
     public SampleResponseData query(SampleRequestDTO request) {
 
         logger.debug("### Service ### [{}]", request.toString());
 
-        List<ResultVO> listResult = new ArrayList<ResultVO>();
-        ResultVO result = new ResultVO();
-        listResult.add(result);
-        listResult.add(result);
-        listResult.add(result);
-
         SampleResponseData data = new SampleResponseData();
-        data.setUsers(listResult);
+        data.setUsers(userMapper.query(request));
 
-        data.getPage().setLimit(20);
-        data.getPage().setOffset(3);
-
-        return data;
-    }
-
-    public SampleResponseData byPass(SampleRequestDTO request) {
-
-        logger.debug("### Service ### [{}]", request.toString());
-
-        ResultVO result = new ResultVO(request);
-
-        SampleResponseData data = new SampleResponseData();
-        data.getUsers().add(result);
-
-        data.getPage().setLimit(20);
-        data.getPage().setOffset(1);
+        ResponseDTO<SampleResponseData> response = new ResponseDTO<SampleResponseData>();
+        response.setData(data);
 
         return data;
     }

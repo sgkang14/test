@@ -3,6 +3,7 @@ package com.ksg.openapi.sample.errorResponse;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.Pattern;
@@ -15,6 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class SampleResponseData {
 
     private List<ResultVO> users;
@@ -22,8 +24,4 @@ public class SampleResponseData {
     @JsonUnwrapped
     private Paging page;
 
-    public SampleResponseData() {
-        this.users = new ArrayList<ResultVO>();
-        this.page = new Paging();
-    }
 }

@@ -27,6 +27,10 @@
         <appender-ref ref="STDOUT" />
     </logger>
 
+    <!--<logger name="org" level="DEBUG">-->
+        <!--<appender-ref ref="STDOUT" />-->
+    <!--</logger>-->
+
     <root level="DEBUG">
         <appender-ref ref="FILEOUT" />
     </root>

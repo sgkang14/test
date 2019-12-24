@@ -13,8 +13,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class ConvertConfig implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(new HobbyType.StringToEnum());
-        registry.addConverter(new HobbyType.StringToListEnum());
-        registry.addConverter(new SexType.StringToEnum());
+//        registry.addConverter(new HobbyType.StringToEnum());
+//        registry.addConverter(new HobbyType.StringToListEnum());
+//        registry.addConverter(new SexType.StringToEnum());
     }
 }

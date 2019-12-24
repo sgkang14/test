@@ -28,26 +28,24 @@ public class ControllerExceptionHandler {
 
         logger.debug("### ExceptionHandler(custom): [{}]", e.getClass().getSimpleName());
 
-        return new ResponseEntity<>(
+        return new ResponseEntity<ResponseDTO>(
                 new ResponseDTO(e.getErrorCode())
                 , HttpStatus.NOT_FOUND);
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(/*{
             MethodArgumentTypeMismatchException.class
             , BindException.class
             , HttpMessageNotReadableException.class
             , */MethodArgumentNotValidException.class/*
     }*/)
-    @ResponseBody
     public ResponseEntity<ResponseDTO> responseIllegalArgumentError(Exception e) {
 
         logger.debug("### ExceptionHandler(unknown): [{}]", e.getClass().getSimpleName());
 
         ResponseDTO response = new ResponseDTO(ErrorCode.INVALID_PARAM);
 
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<ResponseDTO>(response, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)
@@ -55,7 +53,7 @@ public class ControllerExceptionHandler {
 
         logger.debug("### responseDefaultError(default): [{}]", e.getClass().getSimpleName());
 
-        return new ResponseEntity<>(
+        return new ResponseEntity<ResponseDTO>(
                 new ResponseDTO(ErrorCode.INTERNAL_SERVER_ERROR)
                 , HttpStatus.INTERNAL_SERVER_ERROR);
     }

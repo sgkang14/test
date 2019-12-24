@@ -20,20 +20,20 @@ public class SampleController {
     @Autowired
     SampleService sampleService;
 
-    @RequestMapping(value = "errorResponseGet", method = RequestMethod.GET)
+    @RequestMapping(value = "user", method = RequestMethod.GET)
     public ResponseEntity<ResponseDTO> errorResponseGet(@Valid SampleRequestDTO request) throws Exception {
 
         logger.debug("### Controller ### [{}]", request.toString());
 
-        return new ResponseEntity<>(new ResponseDTO<SampleResponseData>(sampleService.byPass(request)), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDTO<SampleResponseData>(sampleService.query(request)), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "errorResponsePost", method = RequestMethod.POST)
+    @RequestMapping(value = "user", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<ResponseDTO> errorResponsePost(@Valid @RequestBody SampleRequestDTO request) throws Exception {
 
         logger.debug("### Controller ### [{}]", request.toString());
 
-        return new ResponseEntity<>(new ResponseDTO<SampleResponseData>(sampleService.byPass(request)), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDTO<SampleResponseData>(sampleService.query(request)), HttpStatus.OK);
     }
 }

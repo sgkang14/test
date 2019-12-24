@@ -3,6 +3,7 @@ package com.ksg.openapi.sample.errorResponse;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.apache.ibatis.type.Alias;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
@@ -15,12 +16,12 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@Valid
+@Alias("SampleRequestDTO")
 public class SampleRequestDTO {
 
     private Integer num;
 
-    private List<@Pattern(regexp = "seoul|pusan|masan") String> citys;
+    private List<String> citys;
 
     private Date birth;
 
@@ -30,9 +31,9 @@ public class SampleRequestDTO {
 
  //   private List<Family> Familys;
 
-    @Pattern(regexp = "name|sex|hobby")
+    //@Pattern(regexp = "name|sex|hobby")
     private String sort;
 
-    @Pattern(regexp = "desc|asc")
+    //@Pattern(regexp = "desc|asc")
     private String order;
 }

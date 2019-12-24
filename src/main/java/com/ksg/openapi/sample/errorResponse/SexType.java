@@ -21,11 +21,5 @@ public enum SexType implements EnumCode {
 
     private String name;
 
-    public static class StringToEnum implements Converter<String, SexType> {
-        @Override
-        public SexType convert(String source) {
-            return SexType.valueOf(source.toUpperCase());
-        }
-    }
 }
 

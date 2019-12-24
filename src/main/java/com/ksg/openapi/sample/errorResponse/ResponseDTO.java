@@ -41,5 +41,4 @@ public class ResponseDTO<T> {
         this.status = STATUS_OK;
         this.data = data;
     }
-
 }
