@@ -22,8 +22,6 @@ public class SampleService {
 
     public SampleResponseData query(SampleRequestDTO request) {
 
-        logger.debug("### Service ### [{}]", request.toString());
-
         SampleResponseData data = new SampleResponseData();
         data.setUsers(userMapper.query(request));
 

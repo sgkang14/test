@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public enum SexType implements EnumCode {
 
-    MAN("100", "MAN"),
-    WOMAN("200", "WOMAN");
+    MAN("1", "MAN"),
+    WOMAN("2", "WOMAN");
 
     private String code;
 

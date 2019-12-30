@@ -1,14 +1,13 @@
 package com.ksg.openapi.sample.errorResponse;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.apache.ibatis.type.Alias;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,9 +16,10 @@ import java.util.List;
  */
 @Getter
 @Setter
-@ToString
-@Alias("SampleRequestDTO")
-public class SampleRequestDTO {
+@AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Alias("UserVO")
+public class UserVO {
 
     private Integer no;
 
@@ -31,7 +31,7 @@ public class SampleRequestDTO {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date regDt;
 
-    private List<HobbyType> hobbys;
+    private String hobby;
 
     @Override
     public String toString() {

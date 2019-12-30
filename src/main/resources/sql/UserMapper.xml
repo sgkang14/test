@@ -4,9 +4,9 @@
 
 <mapper namespace="com.ksg.openapi.mapper.UserMapper">
 
-    <select id="query" parameterType="SampleRequestDTO" resultType="ResultVO">
+    <select id="query" parameterType="SampleRequestDTO" resultType="UserVO">
 		select u.no
-				, u.name
+				,u.name
 		        ,u.sex
 		        ,u.phone
 		        ,h.name as hobby

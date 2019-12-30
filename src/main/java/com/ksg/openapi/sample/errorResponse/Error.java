@@ -14,7 +14,7 @@ public class Error {
     private String message;
 
     public Error(ErrorCode errorCode) {
-        this.code = ErrorCode.valueOf(errorCode.getName()).getCode();
-        this.message = ErrorCode.valueOf(errorCode.getName()).getMessage();
+        this.code = errorCode.getCode();
+        this.message = errorCode.getMessage();
     }
 }

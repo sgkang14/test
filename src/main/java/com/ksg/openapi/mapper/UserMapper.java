@@ -1,9 +1,7 @@
 package com.ksg.openapi.mapper;
 
-import com.ksg.openapi.sample.errorResponse.ResultVO;
 import com.ksg.openapi.sample.errorResponse.SampleRequestDTO;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

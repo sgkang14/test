@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.Pattern;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class SampleResponseData {
 
-    private List<ResultVO> users;
+    private List<UserVO> users;
 
     @JsonUnwrapped
     private Paging page;

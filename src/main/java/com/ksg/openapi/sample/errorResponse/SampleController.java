@@ -25,7 +25,7 @@ public class SampleController {
 
         logger.debug("### Controller ### [{}]", request.toString());
 
-        return new ResponseEntity<>(new ResponseDTO<SampleResponseData>(sampleService.query(request)), HttpStatus.OK);
+        return new ResponseEntity<ResponseDTO>(new ResponseDTO<SampleResponseData>(sampleService.query(request)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "user", method = RequestMethod.POST)
