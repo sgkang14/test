@@ -6,4 +6,6 @@ package com.ksg.openapi.sample.errorResponse;
 public interface CodeEnum {
 
     String getCode();
+
+    String getValue();
 }

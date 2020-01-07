@@ -23,8 +23,7 @@ public class UserVO {
 
     private Integer no;
 
-    @Pattern(regexp = "man|woman")
-    private String sex;
+    private SexType sex;
 
     private String name;
 

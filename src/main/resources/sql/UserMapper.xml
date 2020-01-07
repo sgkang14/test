@@ -7,7 +7,7 @@
 	<resultMap type="UserVO" id="userMap">
 		<id column="no" property="no"/>
 		<result column="name" property="name"/>
-		<result column="sex" property="sex"/>
+		<result column="sex" property="sex" typeHandler="com.ksg.openapi.handler.CodeEnumHandler"/>
 		<result column="regDt" property="regDt"/>
 		<result column="hobby" property="hobby" typeHandler="com.ksg.openapi.handler.CodeEnumHandler"/>
 	</resultMap>
@@ -21,7 +21,9 @@
 		        ,u.reg_dt as regDt
 		from tb_user u
         inner join tb_user_hobby uh on uh.user_no = u.no
-        inner join tb_hobby h on h.no = uh.hobby_no;
+        inner join tb_hobby h on h.no = uh.hobby_no
+        where u.sex = #{sex, typeHandler=com.ksg.openapi.handler.CodeEnumHandler}
+          and uh.no in  <foreach collection="hobbys" item="hobby"  open="(" close=")" separator=",">#{hobby, typeHandler=com.ksg.openapi.handler.CodeEnumHandler}</foreach>
 	</select>
 
 </mapper>

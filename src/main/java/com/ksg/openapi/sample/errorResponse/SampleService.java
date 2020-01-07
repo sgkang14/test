@@ -26,7 +26,7 @@ public class SampleService {
         data.setUsers(userMapper.query(request));
 
         for (UserVO user : data.getUsers()) {
-            logger.debug("### hobby : [{}]", user.getHobby().getName());
+            logger.debug("### hobby : [{}]", user.getHobby().getValue());
         }
 
         ResponseDTO<SampleResponseData> response = new ResponseDTO<SampleResponseData>();

@@ -1,6 +1,7 @@
 package com.ksg.openapi.sample.errorResponse;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.ksg.openapi.handler.CodeEnumHandler;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,13 +21,14 @@ import java.util.List;
 @AllArgsConstructor
 public enum HobbyType implements CodeEnum {
 
-    WORK("1", "WORK"),
-    GAME("2", "GAME"),
-    STUDY("3", "STUDY");
+    WORK("1", "Work"),
+    GAME("2", "Game"),
+    STUDY("3", "Study");
 
     private String code;
 
-    private String name;
+    @JsonValue
+    private String value;
 
     @Component
     public static class stringToHobbyTypeConverter implements Converter<String, HobbyType> {
@@ -50,8 +52,9 @@ public enum HobbyType implements CodeEnum {
     }
 
     @MappedTypes(HobbyType.class)
-    public static class TypeHandler extends CodeEnumHandler<HobbyType> {
-        public TypeHandler() {
+    @Component
+    public static class HobbyTypeHandler extends CodeEnumHandler<HobbyType> {
+        public HobbyTypeHandler() {
             super(HobbyType.class);
         }
     }

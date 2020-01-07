@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**g
+/**
  * Created by 강성근
  */
 public class CodeEnumHandler <E extends Enum <E>> implements TypeHandler<CodeEnum> {
