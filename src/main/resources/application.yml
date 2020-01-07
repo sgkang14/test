@@ -7,11 +7,6 @@ spring:
     username: sgkang
     password: sgkang
 
-mybatis:
-  type-aliases-package: com.ksg.openapi.sample.errorResponse
-  mapper-locations: classpath:sql/*.xml
-  config-location: classpath:mybatis-config.xml
-
 server:
   port: 8080
 

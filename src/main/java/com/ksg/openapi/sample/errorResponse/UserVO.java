@@ -31,7 +31,7 @@ public class UserVO {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date regDt;
 
-    private String hobby;
+    private HobbyType hobby;
 
     @Override
     public String toString() {

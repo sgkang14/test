@@ -1,7 +1,11 @@
 package com.ksg.openapi.sample.errorResponse;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ksg.openapi.handler.CodeEnumHandler;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.apache.ibatis.type.MappedTypes;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +18,7 @@ import java.util.List;
  */
 @Getter
 @AllArgsConstructor
-public enum HobbyType implements EnumCode {
+public enum HobbyType implements CodeEnum {
 
     WORK("1", "WORK"),
     GAME("2", "GAME"),
@@ -42,6 +46,13 @@ public enum HobbyType implements EnumCode {
                 target.add(HobbyType.valueOf(s.toUpperCase()));
             }
             return target;
+        }
+    }
+
+    @MappedTypes(HobbyType.class)
+    public static class TypeHandler extends CodeEnumHandler<HobbyType> {
+        public TypeHandler() {
+            super(HobbyType.class);
         }
     }
 }

@@ -17,7 +17,6 @@ import java.util.List;
  */
 @Getter
 @Setter
-@ToString
 @Alias("SampleRequestDTO")
 public class SampleRequestDTO {
 

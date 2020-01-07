@@ -53,8 +53,10 @@ public class ControllerExceptionHandler {
 
         logger.debug("### responseDefaultError(default): [{}]", e.getClass().getSimpleName());
 
-        return new ResponseEntity<ResponseDTO>(
-                new ResponseDTO(ErrorCode.INTERNAL_SERVER_ERROR)
-                , HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseDTO<String> response = new ResponseDTO<String>(ErrorCode.INTERNAL_SERVER_ERROR);
+
+        logger.debug("### Error [{}] [{}]", response.getError().getCode(), response.getError().getMessage());
+
+        return new ResponseEntity<ResponseDTO>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

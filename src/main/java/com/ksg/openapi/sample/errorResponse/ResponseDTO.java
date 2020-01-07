@@ -35,10 +35,4 @@ public class ResponseDTO<T> {
         this.status = STATUS_FAIL;
         this.error = new Error(errorCode);
     }
-
-    @JsonIgnore
-    public ResponseDTO(T data) {
-        this.status = STATUS_OK;
-        this.data = data;
-    }
 }

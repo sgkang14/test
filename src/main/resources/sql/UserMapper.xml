@@ -4,12 +4,20 @@
 
 <mapper namespace="com.ksg.openapi.mapper.UserMapper">
 
-    <select id="query" parameterType="SampleRequestDTO" resultType="UserVO">
+	<resultMap type="UserVO" id="userMap">
+		<id column="no" property="no"/>
+		<result column="name" property="name"/>
+		<result column="sex" property="sex"/>
+		<result column="regDt" property="regDt"/>
+		<result column="hobby" property="hobby" typeHandler="com.ksg.openapi.handler.CodeEnumHandler"/>
+	</resultMap>
+
+    <select id="query" parameterType="SampleRequestDTO" resultMap="userMap">
 		select u.no
 				,u.name
 		        ,u.sex
 		        ,u.phone
-		        ,h.name as hobby
+		        ,h.no as hobby
 		        ,u.reg_dt as regDt
 		from tb_user u
         inner join tb_user_hobby uh on uh.user_no = u.no

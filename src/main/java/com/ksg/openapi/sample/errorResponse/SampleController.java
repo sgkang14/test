@@ -23,9 +23,12 @@ public class SampleController {
     @RequestMapping(value = "user", method = RequestMethod.GET)
     public ResponseEntity<ResponseDTO> errorResponseGet(@Valid SampleRequestDTO request) throws Exception {
 
-        logger.debug("### Controller ### [{}]", request.toString());
+        //logger.debug("### Controller ### [{}]", request.toString());
 
-        return new ResponseEntity<ResponseDTO>(new ResponseDTO<SampleResponseData>(sampleService.query(request)), HttpStatus.OK);
+        ResponseDTO<SampleResponseData> response = new ResponseDTO<SampleResponseData>();
+        response.setData(sampleService.query(request));
+
+        return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
     }
 
     @RequestMapping(value = "user", method = RequestMethod.POST)
@@ -34,6 +37,9 @@ public class SampleController {
 
         logger.debug("### Controller ### [{}]", request.toString());
 
-        return new ResponseEntity<>(new ResponseDTO<SampleResponseData>(sampleService.query(request)), HttpStatus.OK);
+        ResponseDTO<SampleResponseData> response = new ResponseDTO<SampleResponseData>();
+        response.setData(sampleService.query(request));
+
+        return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
     }
 }

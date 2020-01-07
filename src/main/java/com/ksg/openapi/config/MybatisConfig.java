@@ -1,6 +1,9 @@
 package com.ksg.openapi.config;
 
+import com.ksg.openapi.sample.errorResponse.HobbyType;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.type.BooleanTypeHandler;
+import org.apache.ibatis.type.TypeHandler;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
@@ -21,19 +24,25 @@ import javax.sql.DataSource;
  * Created by 강성근
  */
 @Configuration
+@MapperScan(basePackages = {"com.ksg.openapi.mapper"})
 public class MybatisConfig {
 
-    @Bean
-    public SqlSessionFactory sqlSessionFactory(DataSource datasource) throws Exception {
-        SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-        sqlSessionFactory.setDataSource(datasource);
-        sqlSessionFactory.setTypeAliasesPackage("com.ksg.openapi.sample.errorResponse");
-        sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/sql/*.xml"));
-        return sqlSessionFactory.getObject();
-    }
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @Bean
-    public SqlSessionTemplate sqlSession(SqlSessionFactory sqlSessionFactory) {
-        return new SqlSessionTemplate(sqlSessionFactory);
+    public SqlSessionFactory sqlSessionFactoryBean(DataSource dataSource) throws Exception {
+        SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
+        sessionFactoryBean.setDataSource(dataSource);
+        sessionFactoryBean.setTypeAliasesPackage("com.ksg.openapi.sample.errorResponse");
+        sessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:mybatis-config.xml"));
+        sessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:sql/*.xml"));
+        sessionFactoryBean.setTypeHandlers(new TypeHandler[] {
+                new BooleanTypeHandler(),
+                new HobbyType.TypeHandler()
+        });
+
+        return sessionFactoryBean.getObject();
     }
+
 }

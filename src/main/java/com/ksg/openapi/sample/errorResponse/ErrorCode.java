@@ -2,6 +2,7 @@ package com.ksg.openapi.sample.errorResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
  */
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public enum ErrorCode {
 
     NOT_FOUND_PARAM("1400", "NOT_FOUND_PARAM", "abc", HttpStatus.BAD_REQUEST),

@@ -7,6 +7,7 @@ import lombok.Setter;
 /**
  * Created by 강성근
  */
+@Getter
 public class Error {
 
     private String code;
