@@ -30,3 +30,7 @@ hs_err_pid*
 /.idea/
 /logs/
 !/src/main/resources/application.yml
+src/main/java/com/ksg/openapi/common/code/converter/
+src/test/
+target/classes/sql/
+target/generated-sources/
