@@ -1,4 +1,4 @@
-package com.ksg.openapi.sample.errorResponse;
+package com.ksg.openapi.common.code;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

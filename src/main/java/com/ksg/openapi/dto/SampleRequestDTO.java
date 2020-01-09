@@ -1,36 +1,38 @@
-package com.ksg.openapi.sample.errorResponse;
+package com.ksg.openapi.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.*;
+import com.ksg.openapi.common.code.HobbyCode;
+import com.ksg.openapi.common.code.SexCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.ibatis.type.Alias;
+import javax.validation.constraints.NotNull;
 
-import javax.validation.constraints.Pattern;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+
 
 /**
  * Created by 강성근
  */
 @Getter
 @Setter
-@AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@Alias("UserVO")
-public class UserVO {
+@Alias("SampleRequestDTO")
+public class SampleRequestDTO {
 
+    @NotNull
     private Integer no;
 
-    private SexType sex;
+    private SexCode sex;
 
     private String name;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date regDt;
 
-    private HobbyType hobby;
+    private List<HobbyCode> hobbys;
 
     @Override
     public String toString() {

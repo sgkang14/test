@@ -1,14 +1,11 @@
-package com.ksg.openapi.sample.errorResponse;
+package com.ksg.openapi.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.sun.org.apache.xml.internal.serializer.SerializerTrace;
+import com.ksg.openapi.common.code.ErrorCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.core.serializer.Serializer;
 
 /**
  * Created by 강성근

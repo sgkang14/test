@@ -1,4 +1,4 @@
-package com.ksg.openapi.sample.errorResponse;
+package com.ksg.openapi.dto;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.AllArgsConstructor;
@@ -17,9 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 public class SampleResponseData {
 
-    private List<UserVO> users;
+    private List<User> users;
 
     @JsonUnwrapped
     private Paging page;
-
 }

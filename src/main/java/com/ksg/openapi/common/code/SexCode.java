@@ -1,7 +1,7 @@
-package com.ksg.openapi.sample.errorResponse;
+package com.ksg.openapi.common.code;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.ksg.openapi.handler.CodeEnumHandler;
+import com.ksg.openapi.mapper.handler.EnumCodeTypeHandler;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.apache.ibatis.type.MappedTypes;
@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Getter
 @AllArgsConstructor
-public enum SexType implements CodeEnum {
+public enum SexCode implements EnumCode {
 
     MAN("1", "Man"),
     WOMAN("2", "Woman");
@@ -28,32 +28,31 @@ public enum SexType implements CodeEnum {
     private String value;
 
     @Component
-    public static class stringToSexTypeConverter implements Converter<String, SexType> {
+    public static class stringToSexTypeConverter implements Converter<String, SexCode> {
         @Override
-        public SexType convert(String source){
-            return SexType.valueOf(source.toUpperCase());
+        public SexCode convert(String source){
+            return SexCode.valueOf(source.toUpperCase());
         }
     }
 
     @Component
-    public static class stringToSexTypeListConverter implements Converter<String, List<SexType>> {
+    public static class stringToSexTypeListConverter implements Converter<String, List<SexCode>> {
         @Override
-        public List<SexType> convert(String source){
+        public List<SexCode> convert(String source){
             List<String> stringList = Arrays.asList(source.split("\\s*,\\s*"));
-            List<SexType> target = new ArrayList<SexType>();
+            List<SexCode> target = new ArrayList<SexCode>();
             for (String s: stringList) {
-                target.add(SexType.valueOf(s.toUpperCase()));
+                target.add(SexCode.valueOf(s.toUpperCase()));
             }
             return target;
         }
     }
 
-    @MappedTypes(SexType.class)
+    @MappedTypes(SexCode.class)
     @Component
-    public static class SexTypeHandler extends CodeEnumHandler<SexType> {
-        public SexTypeHandler() {
-            super(SexType.class);
+    public static class SexCodeTypeHandler extends EnumCodeTypeHandler<SexCode> {
+        public SexCodeTypeHandler() {
+            super(SexCode.class);
         }
     }
 }
-

@@ -1,8 +1,7 @@
-package com.ksg.openapi.sample.errorResponse;
+package com.ksg.openapi.dto;
 
-import lombok.AllArgsConstructor;
+import com.ksg.openapi.common.code.ErrorCode;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * Created by 강성근

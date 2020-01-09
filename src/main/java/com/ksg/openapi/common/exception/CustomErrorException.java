@@ -1,6 +1,6 @@
-package com.ksg.openapi.exception;
+package com.ksg.openapi.common.exception;
 
-import com.ksg.openapi.sample.errorResponse.ErrorCode;
+import com.ksg.openapi.common.code.ErrorCode;
 import lombok.Getter;
 
 /**

@@ -1,6 +1,10 @@
-package com.ksg.openapi.sample.errorResponse;
+package com.ksg.openapi.controller;
 
 import ch.qos.logback.classic.Logger;
+import com.ksg.openapi.dto.ResponseDTO;
+import com.ksg.openapi.dto.SampleRequestDTO;
+import com.ksg.openapi.dto.SampleResponseData;
+import com.ksg.openapi.service.SampleService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

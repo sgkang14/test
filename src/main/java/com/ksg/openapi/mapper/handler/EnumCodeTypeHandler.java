@@ -1,6 +1,6 @@
-package com.ksg.openapi.handler;
+package com.ksg.openapi.mapper.handler;
 
-import com.ksg.openapi.sample.errorResponse.CodeEnum;
+import com.ksg.openapi.common.code.EnumCode;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeException;
 import org.apache.ibatis.type.TypeHandler;
@@ -13,39 +13,39 @@ import java.sql.SQLException;
 /**
  * Created by 강성근
  */
-public class CodeEnumHandler <E extends Enum <E>> implements TypeHandler<CodeEnum> {
+public class EnumCodeTypeHandler<E extends Enum <E>> implements TypeHandler<EnumCode> {
 
     private Class<E> type;
 
-    public CodeEnumHandler(Class<E> type) {
+    public EnumCodeTypeHandler(Class<E> type) {
         this.type = type;
     }
 
     @Override
-    public void setParameter(PreparedStatement ps, int i, CodeEnum parameter, JdbcType jdbcType)
+    public void setParameter(PreparedStatement ps, int i, EnumCode parameter, JdbcType jdbcType)
             throws SQLException {
         ps.setString(i, parameter.getCode());
     }
 
     @Override
-    public CodeEnum getResult(ResultSet rs, String columnName) throws SQLException {
+    public EnumCode getResult(ResultSet rs, String columnName) throws SQLException {
         return getCodeEnum(rs.getString(columnName));
     }
 
     @Override
-    public CodeEnum getResult(ResultSet rs, int columnIndex) throws SQLException {
+    public EnumCode getResult(ResultSet rs, int columnIndex) throws SQLException {
         return getCodeEnum(rs.getString(columnIndex));
     }
 
     @Override
-    public CodeEnum getResult(CallableStatement cs, int columnIndex) throws SQLException {
+    public EnumCode getResult(CallableStatement cs, int columnIndex) throws SQLException {
         return getCodeEnum(cs.getString(columnIndex));
     }
 
-    private CodeEnum getCodeEnum(String code) {
+    private EnumCode getCodeEnum(String code) {
         try {
-            CodeEnum[] enumConstants = (CodeEnum[]) type.getEnumConstants();
-            for (CodeEnum codeNum: enumConstants) {
+            EnumCode[] enumConstants = (EnumCode[]) type.getEnumConstants();
+            for (EnumCode codeNum: enumConstants) {
                 if (codeNum.getCode().equals(code)) {
                     return codeNum;
                 }

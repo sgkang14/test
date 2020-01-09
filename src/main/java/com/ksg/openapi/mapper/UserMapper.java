@@ -1,7 +1,7 @@
 package com.ksg.openapi.mapper;
 
-import com.ksg.openapi.sample.errorResponse.SampleRequestDTO;
-import com.ksg.openapi.sample.errorResponse.UserVO;
+import com.ksg.openapi.dto.SampleRequestDTO;
+import com.ksg.openapi.dto.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +14,5 @@ import java.util.List;
 @Repository
 public interface UserMapper {
 
-    List<UserVO> query(SampleRequestDTO request);
+    List<User> query(SampleRequestDTO request);
 }

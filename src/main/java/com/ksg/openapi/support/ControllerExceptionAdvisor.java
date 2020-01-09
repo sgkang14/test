@@ -1,8 +1,9 @@
-package com.ksg.openapi.exception;
+package com.ksg.openapi.support;
 
 import ch.qos.logback.classic.Logger;
-import com.ksg.openapi.sample.errorResponse.ErrorCode;
-import com.ksg.openapi.sample.errorResponse.ResponseDTO;
+import com.ksg.openapi.common.code.ErrorCode;
+import com.ksg.openapi.common.exception.CustomErrorException;
+import com.ksg.openapi.dto.ResponseDTO;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -19,9 +20,9 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
  */
 @ControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class ControllerExceptionHandler {
+public class ControllerExceptionAdvisor {
 
-    static final Logger logger = (Logger) LoggerFactory.getLogger(ControllerExceptionHandler.class);
+    static final Logger logger = (Logger) LoggerFactory.getLogger(ControllerExceptionAdvisor.class);
 
     @ExceptionHandler(CustomErrorException.class)
     public ResponseEntity<ResponseDTO> responseCustomError(CustomErrorException e) {
@@ -33,15 +34,15 @@ public class ControllerExceptionHandler {
                 , HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(/*{
+    @ExceptionHandler({
             MethodArgumentTypeMismatchException.class
             , BindException.class
             , HttpMessageNotReadableException.class
-            , */MethodArgumentNotValidException.class/*
-    }*/)
+            , MethodArgumentNotValidException.class
+    })
     public ResponseEntity<ResponseDTO> responseIllegalArgumentError(Exception e) {
 
-        logger.debug("### ExceptionHandler(unknown): [{}]", e.getClass().getSimpleName());
+        logger.debug("### ExceptionHandler(unknown): [{}]", e.getClass().getName());
 
         ResponseDTO response = new ResponseDTO(ErrorCode.INVALID_PARAM);
 
