@@ -4,7 +4,7 @@ import ch.qos.logback.classic.Logger;
 import com.ksg.openapi.dto.ResponseDTO;
 import com.ksg.openapi.dto.SampleRequestDTO;
 import com.ksg.openapi.dto.User;
-import com.ksg.openapi.mapper.UserMapper;
+import com.ksg.openapi.repository.mapper.UserMapper;
 import com.ksg.openapi.dto.SampleResponseData;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

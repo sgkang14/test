@@ -1,4 +1,4 @@
-package com.ksg.openapi.mapper;
+package com.ksg.openapi.repository.mapper;
 
 import com.ksg.openapi.dto.SampleRequestDTO;
 import com.ksg.openapi.dto.User;

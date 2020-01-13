@@ -1,7 +1,7 @@
 package com.ksg.openapi.common.code;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.ksg.openapi.mapper.handler.EnumCodeTypeHandler;
+import com.ksg.openapi.repository.handler.EnumCodeTypeHandler;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.apache.ibatis.type.MappedTypes;

@@ -1,4 +1,4 @@
-package com.ksg.openapi.mapper.handler;
+package com.ksg.openapi.repository.handler;
 
 import com.ksg.openapi.common.code.EnumCode;
 import org.apache.ibatis.type.JdbcType;
