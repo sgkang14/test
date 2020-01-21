@@ -7,6 +7,8 @@ import com.ksg.openapi.common.code.SexCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.ibatis.type.Alias;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import javax.validation.constraints.NotNull;
 
 import java.util.Date;
@@ -19,8 +21,10 @@ import java.util.List;
  */
 @Getter
 @Setter
-@Alias("SampleRequestDTO")
-public class SampleRequestDTO {
+@Alias("UserListRequestDTO")
+public class UserListRequestDTO {
+
+    private Integer userNo;
 
     @NotNull
     private Integer no;
@@ -32,7 +36,11 @@ public class SampleRequestDTO {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date regDt;
 
-    private List<HobbyCode> hobbys;
+    private List<HobbyCode> hobbies;
+
+    private Integer offset;
+
+    private Integer limit;
 
     @Override
     public String toString() {
@@ -43,4 +51,6 @@ public class SampleRequestDTO {
             return "";
         }
     }
+
+
 }

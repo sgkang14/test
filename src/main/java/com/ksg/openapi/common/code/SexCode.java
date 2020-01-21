@@ -27,32 +27,4 @@ public enum SexCode implements EnumCode {
     @JsonValue
     private String value;
 
-    @Component
-    public static class stringToSexTypeConverter implements Converter<String, SexCode> {
-        @Override
-        public SexCode convert(String source){
-            return SexCode.valueOf(source.toUpperCase());
-        }
-    }
-
-    @Component
-    public static class stringToSexTypeListConverter implements Converter<String, List<SexCode>> {
-        @Override
-        public List<SexCode> convert(String source){
-            List<String> stringList = Arrays.asList(source.split("\\s*,\\s*"));
-            List<SexCode> target = new ArrayList<SexCode>();
-            for (String s: stringList) {
-                target.add(SexCode.valueOf(s.toUpperCase()));
-            }
-            return target;
-        }
-    }
-
-    @MappedTypes(SexCode.class)
-    @Component
-    public static class SexCodeTypeHandler extends EnumCodeTypeHandler<SexCode> {
-        public SexCodeTypeHandler() {
-            super(SexCode.class);
-        }
-    }
 }

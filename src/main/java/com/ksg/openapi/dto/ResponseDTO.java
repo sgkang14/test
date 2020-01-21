@@ -3,6 +3,7 @@ package com.ksg.openapi.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.ksg.openapi.common.code.ErrorCode;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,8 +13,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@NoArgsConstructor
 public class ResponseDTO<T> {
 
     @JsonIgnore
@@ -27,9 +28,13 @@ public class ResponseDTO<T> {
 
     private T data;
 
-    @JsonIgnore
     public ResponseDTO(ErrorCode errorCode) {
         this.status = STATUS_FAIL;
         this.error = new Error(errorCode);
+    }
+
+    public ResponseDTO(T data) {
+        this.status = STATUS_OK;
+        this.data = data;
     }
 }

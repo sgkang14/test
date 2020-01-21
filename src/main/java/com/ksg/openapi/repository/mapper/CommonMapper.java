@@ -1,18 +1,14 @@
 package com.ksg.openapi.repository.mapper;
 
-import com.ksg.openapi.dto.UserListRequestDTO;
-import com.ksg.openapi.dto.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * Created by 강성근
  */
 @Mapper
 @Repository
-public interface UserMapper {
+public interface CommonMapper {
 
-    List<User> query(UserListRequestDTO request);
+    void selectDatabase(String name);
 }

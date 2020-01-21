@@ -9,8 +9,7 @@ spring:
 
 mybatis:
   mapper-locations: classpath*:/sql/*.xml
-  type-aliases-package: com.ksg.openapi.dto
-  type-handlers-package: com.ksg.openapi.common.code
+  type-aliases-package: com.ksg.openapi.dto, com.ksg.openapi.repository.handler
   configuration:
     cache-enabled: false
     use-generated-keys: true

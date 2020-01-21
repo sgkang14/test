@@ -4,26 +4,25 @@
 
 <mapper namespace="com.ksg.openapi.repository.mapper.UserMapper">
 
-	<resultMap type="User" id="userMap">
+	<resultMap id="userMap" type="User">
 		<id column="no" property="no"/>
 		<result column="name" property="name"/>
-		<result column="sex" property="sex" typeHandler="com.ksg.openapi.repository.handler.EnumCodeTypeHandler"/>
+		<result column="sex" property="sex" typeHandler="EnumCodeTypeHandler"/>
 		<result column="regDt" property="regDt"/>
-		<result column="hobby" property="hobby" typeHandler="com.ksg.openapi.repository.handler.EnumCodeTypeHandler"/>
+		<result column="hobby" property="hobby" typeHandler="EnumCodeTypeHandler" />
 	</resultMap>
 
-    <select id="query" parameterType="SampleRequestDTO" resultMap="userMap">
+    <select id="query" parameterType="UserListRequestDTO" resultMap="userMap">
 		select u.no
 				,u.name
 		        ,u.sex
-		        ,u.phone
-		        ,h.no as hobby
 		        ,u.reg_dt as regDt
+		        ,uh.no as hobby
 		from tb_user u
         inner join tb_user_hobby uh on uh.user_no = u.no
         inner join tb_hobby h on h.no = uh.hobby_no
-        where u.sex = #{sex, typeHandler=com.ksg.openapi.repository.handler.EnumCodeTypeHandler}
-          and uh.no in  <foreach collection="hobbys" item="hobby"  open="(" close=")" separator=",">#{hobby, typeHandler=com.ksg.openapi.repository.handler.EnumCodeTypeHandler}</foreach>
+        where u.sex = #{sex, typeHandler=EnumCodeTypeHandler}
+          and uh.no in  <foreach collection="hobbies" item="hobby"  open="(" close=")" separator=",">#{hobby, typeHandler=EnumCodeTypeHandler}</foreach>
 	</select>
 
 </mapper>

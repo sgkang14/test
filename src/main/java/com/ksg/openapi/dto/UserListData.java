@@ -13,12 +13,14 @@ import java.util.List;
  */
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class SampleResponseData {
+public class UserListData {
 
     private List<User> users;
 
-    @JsonUnwrapped
-    private Paging page;
+    private Integer offset;
+
+    private Integer limit;
+
+    private Integer totalCount;
 }

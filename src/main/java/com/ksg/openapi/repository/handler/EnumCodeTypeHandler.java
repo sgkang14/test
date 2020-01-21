@@ -1,6 +1,7 @@
 package com.ksg.openapi.repository.handler;
 
 import com.ksg.openapi.common.code.EnumCode;
+import org.apache.ibatis.type.Alias;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeException;
 import org.apache.ibatis.type.TypeHandler;
@@ -13,6 +14,7 @@ import java.sql.SQLException;
 /**
  * Created by 강성근
  */
+@Alias("EnumCodeTypeHandler")
 public class EnumCodeTypeHandler<E extends Enum <E>> implements TypeHandler<EnumCode> {
 
     private Class<E> type;
