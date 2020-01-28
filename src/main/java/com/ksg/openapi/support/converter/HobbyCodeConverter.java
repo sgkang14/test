@@ -14,7 +14,7 @@ import java.util.List;
 public class HobbyCodeConverter {
 
     @Component
-    public static class stringToHobbyTypeConverter implements Converter<String, HobbyCode> {
+    public static class stringToHobbyCodeConverter implements Converter<String, HobbyCode> {
         @Override
         public HobbyCode convert(String source){
             return HobbyCode.valueOf(source.toUpperCase());
@@ -22,7 +22,7 @@ public class HobbyCodeConverter {
     }
 
     @Component
-    public static class stringToHobbyTypeListConverter implements Converter<String, List<HobbyCode>> {
+    public static class stringToHobbyCodeListConverter implements Converter<String, List<HobbyCode>> {
         @Override
         public List<HobbyCode> convert(String source){
             List<String> stringList = Arrays.asList(source.split("\\s*,\\s*"));

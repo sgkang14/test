@@ -22,7 +22,7 @@
         inner join tb_user_hobby uh on uh.user_no = u.no
         inner join tb_hobby h on h.no = uh.hobby_no
         where u.sex = #{sex, typeHandler=EnumCodeTypeHandler}
-          and uh.no in  <foreach collection="hobbies" item="hobby"  open="(" close=")" separator=",">#{hobby, typeHandler=EnumCodeTypeHandler}</foreach>
+          <!--and uh.no in  <foreach collection="hobbies" item="hobby"  open="(" close=")" separator=",">#{hobby, typeHandler=EnumCodeTypeHandler}</foreach>-->
 	</select>
 
 </mapper>

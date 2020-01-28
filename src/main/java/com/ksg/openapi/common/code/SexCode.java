@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import java.lang.Enum;
+
 /**
  * Created by 강성근
  */
@@ -26,5 +28,4 @@ public enum SexCode implements EnumCode {
 
     @JsonValue
     private String value;
-
 }
