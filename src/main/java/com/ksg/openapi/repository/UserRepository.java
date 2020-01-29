@@ -1,4 +1,4 @@
-package com.ksg.openapi.repository.mapper;
+package com.ksg.openapi.repository;
 
 import com.ksg.openapi.dto.UserListRequestDTO;
 import com.ksg.openapi.dto.User;
@@ -10,9 +10,9 @@ import java.util.List;
 /**
  * Created by 강성근
  */
-@Mapper
+//@Mapper
 @Repository
-public interface UserMapper {
+public interface UserRepository {
 
     List<User> query(UserListRequestDTO request);
 }

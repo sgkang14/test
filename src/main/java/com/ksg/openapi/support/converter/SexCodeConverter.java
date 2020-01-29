@@ -20,7 +20,7 @@ public class SexCodeConverter {
             return SexCode.valueOf(source.toUpperCase());
         }
     }
-
+/*
     @Component
     public static class stringToSexTypeListConverter implements Converter<String, List<SexCode>> {
         @Override
@@ -33,4 +33,5 @@ public class SexCodeConverter {
             return target;
         }
     }
+    */
 }

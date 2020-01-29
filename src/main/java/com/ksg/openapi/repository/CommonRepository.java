@@ -1,4 +1,4 @@
-package com.ksg.openapi.repository.mapper;
+package com.ksg.openapi.repository;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -6,9 +6,9 @@ import org.springframework.stereotype.Repository;
 /**
  * Created by 강성근
  */
-@Mapper
+//@Mapper
 @Repository
-public interface CommonMapper {
+public interface CommonRepository {
 
     void selectDatabase(String name);
 }

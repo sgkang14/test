@@ -21,6 +21,7 @@ public class HobbyCodeConverter {
         }
     }
 
+    /*
     @Component
     public static class stringToHobbyCodeListConverter implements Converter<String, List<HobbyCode>> {
         @Override
@@ -33,4 +34,5 @@ public class HobbyCodeConverter {
             return target;
         }
     }
+    */
 }

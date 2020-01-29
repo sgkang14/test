@@ -23,8 +23,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    RuntimeException a;
-
     @RequestMapping(value = "user/{userNo}", method = RequestMethod.GET)
     public ResponseEntity<?> errorResponseGet(@Valid UserListRequestDTO request) throws Exception {
 
@@ -34,7 +32,11 @@ public class UserController {
 
         response.setData(userService.queryUserList(request));
 
-        return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
+        ResponseEntity entity = new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
+
+        logger.debug("### Controller ### [{}]", entity.toString());
+
+        return entity;
     }
 
     @RequestMapping(value = "user", method = RequestMethod.POST)

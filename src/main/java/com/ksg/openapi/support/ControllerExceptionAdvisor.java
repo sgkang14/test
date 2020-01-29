@@ -42,7 +42,7 @@ public class ControllerExceptionAdvisor {
     })
     public ResponseEntity<ResponseDTO> responseIllegalArgumentError(Exception e) {
 
-        logger.debug("### ExceptionHandler(unknown): [{}]", e.getClass().getName());
+        logger.debug("### validation exception(): [{}]", e.getClass().getName());
 
         ResponseDTO response = new ResponseDTO(ErrorCode.INVALID_PARAM);
 

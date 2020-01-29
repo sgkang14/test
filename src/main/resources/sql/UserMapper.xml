@@ -2,7 +2,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ksg.openapi.repository.mapper.UserMapper">
+<mapper namespace="com.ksg.openapi.repository.UserRepository">
 
 	<resultMap id="userMap" type="User">
 		<id column="no" property="no"/>
@@ -22,7 +22,7 @@
         inner join tb_user_hobby uh on uh.user_no = u.no
         inner join tb_hobby h on h.no = uh.hobby_no
         where u.sex = #{sex, typeHandler=EnumCodeTypeHandler}
-          <!--and uh.no in  <foreach collection="hobbies" item="hobby"  open="(" close=")" separator=",">#{hobby, typeHandler=EnumCodeTypeHandler}</foreach>-->
+          and h.no in  <foreach collection="hobbies" item="hobby"  open="(" close=")" separator=",">#{hobby, typeHandler=EnumCodeTypeHandler}</foreach>
 	</select>
 
 </mapper>

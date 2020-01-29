@@ -1,4 +1,4 @@
-package com.ksg.openapi.repository.interceptor;
+package com.ksg.openapi.support.mybatis.interceptor;
 
 import ch.qos.logback.classic.Logger;
 import org.apache.ibatis.cache.CacheKey;
@@ -8,9 +8,7 @@ import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Properties;

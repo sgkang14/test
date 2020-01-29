@@ -6,6 +6,7 @@ import com.ksg.openapi.common.code.HobbyCode;
 import com.ksg.openapi.common.code.SexCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.apache.ibatis.type.Alias;
 import org.springframework.web.bind.annotation.PathVariable;
 

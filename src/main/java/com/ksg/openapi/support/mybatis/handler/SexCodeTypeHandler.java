@@ -1,4 +1,4 @@
-package com.ksg.openapi.repository.handler;
+package com.ksg.openapi.support.mybatis.handler;
 
 import com.ksg.openapi.common.code.SexCode;
 import org.apache.ibatis.type.MappedTypes;
