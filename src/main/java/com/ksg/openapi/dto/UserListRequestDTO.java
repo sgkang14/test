@@ -10,6 +10,8 @@ import lombok.ToString;
 import org.apache.ibatis.type.Alias;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import java.util.Date;
@@ -28,6 +30,7 @@ public class UserListRequestDTO {
     private Integer userNo;
 
     @NotNull
+    @Min(10000) @Max(999999999)
     private Integer no;
 
     private SexCode sex;

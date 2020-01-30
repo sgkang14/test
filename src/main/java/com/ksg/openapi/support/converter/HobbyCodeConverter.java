@@ -13,13 +13,13 @@ import java.util.List;
  */
 public class HobbyCodeConverter {
 
-    @Component
-    public static class stringToHobbyCodeConverter implements Converter<String, HobbyCode> {
-        @Override
-        public HobbyCode convert(String source){
-            return HobbyCode.valueOf(source.toUpperCase());
-        }
-    }
+//    @Component
+//    public static class stringToHobbyCodeConverter implements Converter<String, HobbyCode> {
+//        @Override
+//        public HobbyCode convert(String source){
+//            return HobbyCode.valueOf(source.toUpperCase());
+//        }
+//    }
 
     /*
     @Component

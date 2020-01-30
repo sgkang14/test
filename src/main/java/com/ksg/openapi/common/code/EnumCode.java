@@ -7,4 +7,5 @@ public interface EnumCode {
 
     String getCode();
 
+    String getValue();
 }

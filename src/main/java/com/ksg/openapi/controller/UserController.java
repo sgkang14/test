@@ -1,6 +1,7 @@
 package com.ksg.openapi.controller;
 
 import ch.qos.logback.classic.Logger;
+import com.ksg.openapi.common.code.HobbyCode;
 import com.ksg.openapi.dto.ResponseDTO;
 import com.ksg.openapi.dto.UserListRequestDTO;
 import com.ksg.openapi.service.UserService;
@@ -27,6 +28,7 @@ public class UserController {
     public ResponseEntity<?> errorResponseGet(@Valid UserListRequestDTO request) throws Exception {
 
         logger.debug("### Controller ### [{}]", request.toString());
+
 
         ResponseDTO response = new ResponseDTO();
 

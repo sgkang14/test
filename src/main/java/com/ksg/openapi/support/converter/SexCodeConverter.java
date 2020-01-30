@@ -13,13 +13,13 @@ import java.util.List;
  */
 public class SexCodeConverter {
 
-    @Component
-    public static class stringToSexTypeConverter implements Converter<String, SexCode> {
-        @Override
-        public SexCode convert(String source){
-            return SexCode.valueOf(source.toUpperCase());
-        }
-    }
+//    @Component
+//    public static class stringToSexTypeConverter implements Converter<String, SexCode> {
+//        @Override
+//        public SexCode convert(String source){
+//            return SexCode.valueOf(source.toUpperCase());
+//        }
+//    }
 /*
     @Component
     public static class stringToSexTypeListConverter implements Converter<String, List<SexCode>> {
