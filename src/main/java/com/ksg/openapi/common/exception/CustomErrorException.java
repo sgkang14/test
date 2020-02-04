@@ -13,15 +13,17 @@ public class CustomErrorException extends RuntimeException {
 
     private ErrorCode errorCode;
 
+    private String errorCause;
+
     private CustomErrorException() {}
 
     public CustomErrorException(ErrorCode errorCode) {
-        super();
-        this.errorCode = errorCode;
+        this(errorCode, null);
     }
 
-    public CustomErrorException(ErrorCode errorCode, String message) {
-        super(message);
+    public CustomErrorException(ErrorCode errorCode, String cause) {
+        super();
         this.errorCode = errorCode;
+        this.errorCause = cause;
     }
 }

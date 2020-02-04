@@ -25,9 +25,13 @@ public class ResponseDTO<T> {
 
     private T data;
 
-    public ResponseDTO(ErrorCode errorCode) {
+    public ResponseDTO(ErrorCode errorCode, String cause) {
         this.status = STATUS_FAIL;
-        this.error = new Error(errorCode);
+        this.error = new Error(errorCode, cause);
+    }
+
+    public ResponseDTO(ErrorCode errorCode) {
+        this(errorCode, null);
     }
 
     public ResponseDTO(T data) {

@@ -6,6 +6,13 @@ spring:
     url: jdbc:mysql://localhost:3306/testdb?serverTimezone=UTC
     username: sgkang
     password: sgkang
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+
 
 mybatis:
   mapper-locations: classpath*:/sql/*.xml

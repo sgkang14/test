@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,6 +28,11 @@ public class UserController {
 
     @RequestMapping(value = "user/{userNo}", method = RequestMethod.GET)
     public ResponseEntity<?> errorResponseGet(@Valid UserListRequestDTO request) throws Exception {
+
+//        if (bindingResult.hasErrors()) {
+//            throw new Exception();
+////        Errors errors
+//        };
 
         logger.debug("### Controller ### [{}]", request.toString());
 

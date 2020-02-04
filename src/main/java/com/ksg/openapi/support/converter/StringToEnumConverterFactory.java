@@ -1,6 +1,8 @@
 package com.ksg.openapi.support.converter;
 
 import com.ksg.openapi.common.code.EnumCode;
+import com.ksg.openapi.common.code.ErrorCode;
+import com.ksg.openapi.common.exception.CustomErrorException;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
 
@@ -27,7 +29,7 @@ public class StringToEnumConverterFactory implements ConverterFactory<String, En
                     return enumConstant;
                 }
             }
-            return null;
+                throw new CustomErrorException(ErrorCode.INVALID_PARAM, "Invalid parameter value '"+ source + "'");
 //            return (T) Enum.valueOf(this.enumType, source.trim().toUpperCase());
         }
     }

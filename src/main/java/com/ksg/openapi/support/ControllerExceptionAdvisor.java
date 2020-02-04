@@ -9,7 +9,6 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -30,21 +29,36 @@ public class ControllerExceptionAdvisor {
         logger.debug("### ExceptionHandler(custom): [{}]", e.getClass().getSimpleName());
 
         return new ResponseEntity<ResponseDTO>(
-                new ResponseDTO(e.getErrorCode())
+                new ResponseDTO(e.getErrorCode(), e.getErrorCause())
                 , HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler({
             MethodArgumentTypeMismatchException.class
-            , BindException.class
-            , HttpMessageNotReadableException.class
             , MethodArgumentNotValidException.class
     })
     public ResponseEntity<ResponseDTO> responseIllegalArgumentError(Exception e) {
 
-        logger.debug("### validation exception(): [{}]", e.getClass().getName());
+        logger.debug("### validation exception(): [{}] [{}]", e.getClass().getName(), e.getMessage());
 
         ResponseDTO response = new ResponseDTO(ErrorCode.INVALID_PARAM);
+
+        return new ResponseEntity<ResponseDTO>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(BindException.class)
+    public ResponseEntity<ResponseDTO> responseIllegalArgumentError(BindException e) {
+
+        logger.debug("### validation exception(): [{}] [{}]", e.getClass().getName(), e.getMessage());
+
+        String cause;
+        if (e.getBindingResult().getFieldError().getRejectedValue() != null) {
+            cause = "invalid parameter " + e.getBindingResult().getFieldError().getField() + "=" + e.getBindingResult().getFieldError().getRejectedValue();
+        } else {
+            cause = "parameter " + e.getBindingResult().getFieldError().getField() + " " + e.getBindingResult().getFieldError().getDefaultMessage();
+        }
+
+        ResponseDTO response = new ResponseDTO(ErrorCode.INVALID_PARAM, cause);
 
         return new ResponseEntity<ResponseDTO>(response, HttpStatus.BAD_REQUEST);
     }
@@ -54,7 +68,7 @@ public class ControllerExceptionAdvisor {
 
         logger.debug("### responseDefaultError(default): [{}]", e.getClass().getSimpleName());
 
-        ResponseDTO<String> response = new ResponseDTO<String>(ErrorCode.INTERNAL_SERVER_ERROR);
+        ResponseDTO<String> response = new ResponseDTO<String>(ErrorCode.INTERNAL_SERVER_ERROR, e.getMessage());
 
         logger.debug("### Error [{}] [{}]", response.getError().getCode(), response.getError().getMessage());
 

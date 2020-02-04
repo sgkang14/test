@@ -13,8 +13,15 @@ public class Error {
 
     private String message;
 
-    public Error(ErrorCode errorCode) {
+    public Error(ErrorCode errorCode, String cause) {
         this.code = errorCode.getCode();
         this.message = errorCode.getMessage();
+        if (cause != null) {
+            this.message = this.message + "(" + cause + ")";
+        }
+    }
+
+    public Error(ErrorCode errorCode) {
+        this(errorCode, null);
     }
 }
