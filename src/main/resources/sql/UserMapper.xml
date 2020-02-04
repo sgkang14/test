@@ -9,15 +9,19 @@
 		<result column="name" property="name"/>
 		<result column="sex" property="sex" typeHandler="EnumCodeTypeHandler"/>
 		<result column="regDt" property="regDt"/>
-		<result column="hobby" property="hobby" typeHandler="EnumCodeTypeHandler" />
+		<collection property="hobbies" ofType="Hobby">
+			<id property="hobbyNo" column="hobbyNo" />
+            <result property="hobbyCode" column="hobbyCode" typeHandler="EnumCodeTypeHandler" />
+        </collection>
 	</resultMap>
 
     <select id="query" parameterType="UserListRequestDTO" resultMap="userMap">
-		select u.no
-				,u.name
-		        ,u.sex
+		select u.no as no
+				,u.name as name
+		        ,u.sex as sex
 		        ,u.reg_dt as regDt
-		        ,uh.no as hobby
+		        ,h.no as hobbyNo
+		        ,h.name as hobbyCode
 		from tb_user u
         inner join tb_user_hobby uh on uh.user_no = u.no
         inner join tb_hobby h on h.no = uh.hobby_no

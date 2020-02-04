@@ -10,7 +10,6 @@ import java.util.List;
 /**
  * Created by 강성근
  */
-//@Mapper
 @Repository
 public interface UserRepository {
 

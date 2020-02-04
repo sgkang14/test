@@ -20,5 +20,5 @@ public enum HobbyCode implements EnumCode {
     private String code;
 
     @JsonValue
-    private String value;
+    private String name;
 }

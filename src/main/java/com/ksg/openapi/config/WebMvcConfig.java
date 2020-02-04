@@ -20,9 +20,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Autowired
     AuthenticationIntercepter authenticationIntercepter;
 
-//    @Autowired
-//    StringToEnumConverterFactory stringToEnumConverterFactory;
-
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authenticationIntercepter)

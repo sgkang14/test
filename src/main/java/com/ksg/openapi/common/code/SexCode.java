@@ -3,10 +3,12 @@ package com.ksg.openapi.common.code;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.apache.ibatis.type.Alias;
 
 /**
  * Created by 강성근
  */
+@Alias("SexCode")
 @Getter
 @AllArgsConstructor
 public enum SexCode implements EnumCode {
@@ -17,5 +19,5 @@ public enum SexCode implements EnumCode {
     private String code;
 
     @JsonValue
-    private String value;
+    private String name;
 }

@@ -23,7 +23,7 @@ public class StringToEnumConverterFactory implements ConverterFactory<String, En
             final T[] enumConstants = enumType.getEnumConstants();
 
             for (final T enumConstant : enumConstants) {
-                if (enumConstant.getValue().equals( source )) {
+                if (enumConstant.getName().equals( source )) {
                     return enumConstant;
                 }
             }

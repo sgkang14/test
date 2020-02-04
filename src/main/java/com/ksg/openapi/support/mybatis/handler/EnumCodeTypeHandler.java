@@ -1,10 +1,11 @@
 package com.ksg.openapi.support.mybatis.handler;
 
+import ch.qos.logback.classic.Logger;
 import com.ksg.openapi.common.code.EnumCode;
 import org.apache.ibatis.type.Alias;
+import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
-import org.apache.ibatis.type.TypeException;
-import org.apache.ibatis.type.TypeHandler;
+import org.slf4j.LoggerFactory;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -15,46 +16,79 @@ import java.sql.SQLException;
  * Created by 강성근
  */
 @Alias("EnumCodeTypeHandler")
-public class EnumCodeTypeHandler<E extends Enum <E>> implements TypeHandler<EnumCode> {
+public class EnumCodeTypeHandler<E extends EnumCode> extends BaseTypeHandler<E> {
 
-    private Class<E> type;
+    private static Logger logger = (Logger) LoggerFactory.getLogger(EnumCodeTypeHandler.class);
 
+    private final Class<E> type;
+
+    /**
+     * Instantiates a new enum code handler.
+     *
+     * @param type the type
+     */
     public EnumCodeTypeHandler(Class<E> type) {
+        if (type == null) {
+            throw new IllegalArgumentException("Type argument cannot be null");
+        }
         this.type = type;
     }
 
     @Override
-    public void setParameter(PreparedStatement ps, int i, EnumCode parameter, JdbcType jdbcType)
+    public void setNonNullParameter(PreparedStatement ps, int i, E parameter,
+                                    JdbcType jdbcType) throws SQLException {
+        if (jdbcType == null) {
+            ps.setString(i, parameter.getCode());
+        } else {
+            ps.setObject(i, parameter.getCode(), jdbcType.TYPE_CODE);
+        }
+    }
+
+    @Override
+    public E getNullableResult(ResultSet rs, String columnName)
             throws SQLException {
-        ps.setString(i, parameter.getCode());
+        final String code = rs.getString(columnName);
+        return code == null ? null : getEnum(code);
     }
 
     @Override
-    public EnumCode getResult(ResultSet rs, String columnName) throws SQLException {
-        return getCodeEnum(rs.getString(columnName));
+    public E getNullableResult(ResultSet rs, int columnIndex)
+            throws SQLException {
+        final String code = rs.getString(columnIndex);
+        return code == null ? null : getEnum(code);
     }
 
     @Override
-    public EnumCode getResult(ResultSet rs, int columnIndex) throws SQLException {
-        return getCodeEnum(rs.getString(columnIndex));
+    public E getNullableResult(CallableStatement cs, int columnIndex)
+            throws SQLException {
+        final String code = cs.getString(columnIndex);
+        return code == null ? null : getEnum(code);
     }
 
-    @Override
-    public EnumCode getResult(CallableStatement cs, int columnIndex) throws SQLException {
-        return getCodeEnum(cs.getString(columnIndex));
-    }
-
-    private EnumCode getCodeEnum(String code) {
+    /**
+     * Gets the enum.
+     *
+     * @param code the code
+     * @return the enum
+     */
+    private E getEnum(String code) {
         try {
-            EnumCode[] enumConstants = (EnumCode[]) type.getEnumConstants();
-            for (EnumCode codeNum: enumConstants) {
-                if (codeNum.getCode().equals(code)) {
-                    return codeNum;
+            final E[] enumConstants = type.getEnumConstants();
+
+            for (final E enumConstant : enumConstants) {
+                if (enumConstant.getCode().equals( code )) {
+                    return enumConstant;
                 }
             }
-            return null;
-        } catch (Exception e) {
-            throw new TypeException("Can't make enum object '" + type + "'", e);
+
+            if (code != null) {
+                logger.error("Not found enum constant! [" + code + "]");
+            }
+        } catch (final Exception e) {
+            logger.error("type : " + type.getName());
+            logger.error("EnumCodeHandler.getEnum(" + code + ")", e);
         }
+
+        return null;
     }
 }
